@@ -31,39 +31,39 @@ const signup = async (req, res) => {
 }
 
 //login
-// const login = async (req, res) => {
-//     try {
-//         const { email, password } = req.body
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body
 
-//         const userDetails = await User.find({where: {email}})
+        const userDetails = await User.find({where: {email}})
 
-//         if(!userDetails) {
-//             res.status(404).json({message: 'wrong email'})
-//         }else {
-//             const correctPass = await bcrypt.compare(password,userDetails.password)
-//             if(correctPass) {
-//                 const token = jwt.sign({userId: userDetails.id},secretKey)
-//                 req.headers.authorization = token
+        if(!userDetails) {
+            res.status(404).json({message: 'wrong email'})
+        }else {
+            const correctPass = await bcrypt.compare(password,userDetails.password)
+            if(correctPass) {
+                const token = jwt.sign({userId: userDetails.id},secretKey)
+                req.headers.authorization = token
 
 
-//                 const user = {
-//                     id : userDetails.id,
-//                     name: userDetails.name,
-//                     email: userDetails.email,
-//                     phone: userDetails.phone
+                const user = {
+                    id : userDetails.id,
+                    name: userDetails.name,
+                    email: userDetails.email,
+                    phone: userDetails.phone
 
-//                 }
-//                 res.status(200).json({message: 'user login successful' ,user,token,})
-//             }else {
-//                 res.status(401).json({message: 'wrong password'})
-//             }
-//         }
+                }
+                res.status(200).json({message: 'user login successful' ,user,token,})
+            }else {
+                res.status(401).json({message: 'wrong password'})
+            }
+        }
 
-//     } catch (err) {
-//         console.log(err)
-//         res.status(500).json({ message: 'internal server error' })
-//     }
-// }
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({ message: 'internal server error' })
+    }
+}
 
 
 
@@ -73,5 +73,5 @@ const signup = async (req, res) => {
 
 module.exports = {
     signup,
-    // login
+    login
 }
