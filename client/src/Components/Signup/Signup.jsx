@@ -1,8 +1,12 @@
 import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './signup.css'
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 const Signup = () => {
+
+  const navigate  = useNavigate()
 
     const [formData, setFormData] = useState({
         name: '',
@@ -37,12 +41,29 @@ const Signup = () => {
             phone: event.target.value
         }))
       }
+
+      const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        try { 
+          const res = await axios.post(`http://localhost:3000/api/users/signup`, formData)
+          if(res.status === 201) {
+            alert('user signup successful')
+            navigate('/login')
+          }
+
+        }catch(err) {
+          console.log(err)
+        }
+      }
+
+
   return (
     <div className="container d-flex align-items-center justify-content-center vh-100">
         <div className="row justify-content-center align-items-center">
           {/* <div className="col-md-12 col-lg-12"> */}
           <div className='form-container'>
-            <form className="p-5">
+            <form className="p-5" onSubmit={handleSubmit}>
               <h2 className="text-center mb-5 register-text">Register</h2>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">Name</label>
