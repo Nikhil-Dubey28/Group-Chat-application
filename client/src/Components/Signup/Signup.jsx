@@ -51,7 +51,9 @@ const Signup = () => {
             alert('user signup successful')
             navigate('/login')
           }
-
+          if(res.status === 409) {
+            alert(res.data.message)
+          }
         }catch(err) {
           console.log(err)
         }

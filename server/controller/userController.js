@@ -46,13 +46,22 @@ const signup = async (req, res) => {
 //                 req.headers.authorization = token
 
 
+//                 const user = {
+//                     id : userDetails.id,
+//                     name: userDetails.name,
+//                     email: userDetails.email,
+//                     phone: userDetails.phone
+
+//                 }
+//                 res.status(200).json({message: 'user login successful' ,user,token,})
+//             }else {
+//                 res.status(401).json({message: 'wrong password'})
 //             }
 //         }
 
-
-
 //     } catch (err) {
-
+//         console.log(err)
+//         res.status(500).json({ message: 'internal server error' })
 //     }
 // }
 
@@ -60,6 +69,9 @@ const signup = async (req, res) => {
 
 
 
+
+
 module.exports = {
-    signup
+    signup,
+    // login
 }
