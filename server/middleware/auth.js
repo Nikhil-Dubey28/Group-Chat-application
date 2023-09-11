@@ -14,6 +14,7 @@ const auth = (req,res,next) => {
         }
 
         req.userId = decoded.userId
+        req.userName = decoded.userName
         next()
     })
 }

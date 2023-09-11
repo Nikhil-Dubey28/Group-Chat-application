@@ -42,7 +42,7 @@ const login = async (req, res) => {
         }else {
             const correctPass = await bcrypt.compare(password,userDetails.password)
             if(correctPass) {
-                const token = jwt.sign({userId: userDetails.id},secretKey)
+                const token = jwt.sign({userId: userDetails.id, userName: userDetails.name},secretKey)
                 req.headers.authorization = token
 
 
