@@ -32,11 +32,11 @@ const ChatArea = () => {
         console.log(error)
       }
     }
-    // const intervalId = setInterval(() => {
-    //   fetchMessages(chat_id)
-    // },1000)
+    const intervalId = setInterval(() => {
+      fetchMessages(chat_id)
+    },1000)
 
-    // return () => clearInterval(intervalId)
+    return () => clearInterval(intervalId)
     fetchMessages(chat_id)
   },[])
 
