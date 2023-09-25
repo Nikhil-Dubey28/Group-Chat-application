@@ -16,9 +16,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
 app.use('/api',userRoutes)
+app.use('/api',chatRoutes)
+app.use('/api',groupRoutes)
 
 
+// relations
+User.hasMany(Chat);
 
+Chat.belongsTo(User);
+Chat.belongsTo(Group);
+
+User.hasMany(UserGroup);
+
+Group.hasMany(Chat);
+Group.hasMany(UserGroup);
+
+UserGroup.belongsTo(User);
+UserGroup.belongsTo(Group);
 
 sequelize
 .sync()

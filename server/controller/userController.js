@@ -65,6 +65,21 @@ const login = async (req, res) => {
     }
 }
 
+const fetchUsers = async (req, res) => {
+    try {
+        const loggedInUserId = req.userId // Assuming the logged-in user's ID is in req.user.userId
+        const users = await User.findAll({
+            where: {
+                id: { [Op.ne]: loggedInUserId } // Exclude the logged-in user's ID
+            }
+        });
+        res.status(200).json(users);
+    } catch (err) {
+        console.error(err.message);
+        console.error(err.stack);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
 
 
 
@@ -73,5 +88,6 @@ const login = async (req, res) => {
 
 module.exports = {
     signup,
-    login
+    login,
+    fetchUsers
 }

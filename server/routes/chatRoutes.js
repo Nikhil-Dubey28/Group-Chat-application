@@ -3,7 +3,7 @@ const chatController = require('../controller/chatController')
 const auth = require('../middleware/auth')
 
 router.post('/chat/send-message',auth,chatController.sendMessage)
-router.get('/chat/get-message',auth,chatController.getMessage)
+router.get('/chat/get-message/:id',auth,chatController.getMessage)
 
 
 

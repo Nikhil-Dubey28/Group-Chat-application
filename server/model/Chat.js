@@ -12,6 +12,9 @@ const Chat = sequelize.define('chat', {
     name: {
         type: Sequelize.STRING
     },
+    email: {
+        type : Sequelize.STRING
+    },
     message: {
         type: Sequelize.STRING 
     },
